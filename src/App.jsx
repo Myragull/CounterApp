@@ -1,35 +1,56 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from "react";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [count, setcount] = useState(0);
+
+  function handleDecrement() {
+    if (count > 0) {
+      setcount(count - 1);
+    }
+  }
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div>
+      <div className="flex justify-center items-center min-h-screen">
+        <div className="bg-[#281f48] p-4 rounded-lg w-80 h-60">
+          <h1 className="text-3xl font-bold text-white text-center mb-4">
+            Counter App
+          </h1>
+
+          {/* + and - buttons */}
+          <div className="flex justify-center mb-2">
+            <button
+              className="bg-[#281f48] text-white px-5 py-1 rounded-lg hover:bg-[#322756] transition duration-300 border border-white mr-2.5"
+              onClick={() => setcount(count + 1)}
+            >
+              +
+            </button>
+            <button
+              className="bg-[#281f48] text-white px-5 py-1 rounded-lg hover:bg-[#322756] transition duration-300 border border-white ml-2.5"
+              onClick={handleDecrement}
+            >
+              -
+            </button>
+          </div>
+
+          <button
+            className="bg-[#281f48] text-white px-6 py-1 rounded-lg hover:bg-[#322756] transition duration-300 border border-2-white mt-3 ml-24"
+            onClick={() => setcount(0)}
+          >
+            Reset
+          </button>
+
+          <p className="text-white mt-3 ml-20">Count : {count} </p>
+          
+          {count >= 10 && (
+            <p className="text-green-400 text-center mt-2 font-semibold">
+              🎉 Congratulations! You reached 10 🎉
+            </p>
+          )}
+        </div>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    </div>
+  );
 }
 
-export default App
+export default App;
